@@ -15,10 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from django.contrib.auth import views
+#from .views import index #path account views not defined error 안됨
+#from accounts import views
+#from django.contrib.auth import views as auth_views
+#from . import views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/login/', views.login, name='login'),#views.LoginView.as_view(), name='login'),
+    path('accounts/logout/', views.LogoutView.as_view(next_page='/'), name='logout'),
     path('', include('blog.urls')),
 ]
+
